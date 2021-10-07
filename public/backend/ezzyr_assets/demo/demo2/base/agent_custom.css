@@ -1,0 +1,185 @@
+a:focus {
+    outline: none!important;
+}
+
+.bootstrap-select .bs-caret{
+    display:none;
+}
+
+.m-header--minimize-on .m-brand .m-brand__logo .m-brand__logo-wrapper img {
+    max-height: 74px!important;
+    max-width: 140px!important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    border:0px!important;
+    padding:0px!important;
+}
+.dataTables_length{
+    margin-bottom:10px;
+}
+.dataTables_length .form-control {
+    margin-left: 5px;
+    margin-right: 5px;
+    width:60%!important;
+    display: inline-block!important;
+}
+table.dataTable.no-footer {
+    border-bottom:1px solid #f4f4f4!important;
+}
+.form-control{
+    height: inherit!important;
+    box-shadow: none!important;
+}
+.m-bootstrap-select .caret {
+    display: none !important;
+}
+.m-brand .m-brand__logo .m-brand__logo-wrapper img {
+        width: 160px;
+    }
+.dataTables_wrapper .dataTables_processing {
+    z-index: 99999;
+    padding-top: 28px!important;
+    height: 68px;
+}
+.m-loader::before {
+    top: 20%!important;
+}
+.modal-header {
+    display: inline-block!important;
+    z-index: 1005;
+}
+.m-bootstrap-select .dropdown-menu.inner {
+    max-height: 225px !important;
+}
+/* ====Modal image css ====*/
+#vehicle_tab .modal-body img{
+    width: 330px;
+}
+.trip-distance-img img{
+    width: 12px!important;
+    height: 70px!important;
+}
+/* ========Media Query======= */
+@media only screen and (max-width: 500px) {
+    .m-brand .m-brand__tools .m-dropdown .btn {
+        padding: 0.7rem 1.0rem 0.7rem 1.0rem!important;
+    }
+    .m-brand .m-brand__logo .m-brand__logo-wrapper img {
+        width: 85px!important;
+    }
+
+}
+
+/* ====Datatable datepicker css ====*/
+.dataTables_wrapper .input-group-addon{
+    padding: 10px 24px 10px 15px!important;
+    color: #575962;
+    background-color: #f4f5f8;
+    border: 1px solid;
+    border-color: #ebedf2;
+}
+.dataTables_wrapper .input-group-addon i{
+    color: #a4a2bb;
+}
+
+/*==== Dashboard css =====*/
+
+.highcharts-credits{
+    display:none;
+}
+.m-scrollable {
+    height: inherit!important;
+}
+.dashboard-remark {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.dashboard-remark .outlet-img{
+    height: 30px;
+    width: 30px;
+    overflow: hidden;
+}
+.dashboard-remark li {
+    background-color: #fafafa;
+    color: #82949a;
+    margin-bottom: 7px;
+    display: flow-root;
+}
+.dashboard-remark li:after, .dashboard-remark li:before {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+.dashboard-remark li .col1 {
+    clear: both;
+}
+
+.dashboard-remark li .col1, .dashboard-remark li .col1>.cont>.cont-col2 {
+    float: left;
+}
+.dashboard-remark li .col1>.cont {
+    float: left;
+    overflow: hidden;
+}
+.dashboard-remark li .col1>.cont>.cont-col1 {
+    float: left;
+}
+
+.dashboard-remark li .col1>.cont>.cont-col1>.label {
+    display: inline-block;
+//..padding: 5px 4px 6px 5px;
+    vertical-align: middle;
+    text-align: center;
+}
+.dashboard-remark .label.label-sm {
+    font-size: 13px;
+    padding: 2px 5px;
+}
+.dashboard-remark .label-info {
+    background-color: #659be0;
+}
+.dashboard-remark .label {
+    text-shadow: none!important;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 0;
+    color: #fff;
+}
+.dashboard-remark .label, .table.table-light>thead>tr>th {
+    font-family: "Open Sans",sans-serif;
+}
+
+.dashboard-remark .label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    color: #fff;
+    border-radius: 0;
+}
+.dashboard-remark .label {
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+}
+.dashboard-remark li .col1>.cont>.cont-col1>.label>i {
+    text-align: center;
+    font-size: 14px;
+}
+.dashboard-remark li .col1>.cont>.cont-col2>.desc {
+    margin-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 5px;
+    overflow: hidden;
+}
+.dashboard-remark li .col2 {
+    float: right;
+    width: 230px;
+}
+.dashboard-remark li .col2>.date {
+    padding: 4px 9px 5px 4px;
+    text-align: right;
+    font-style: italic;
+    color: #c1cbd0;
+}

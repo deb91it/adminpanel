@@ -1,0 +1,8 @@
+"OwnerName","BusinessName","MerchantID","RecipientName","RecipientContact","RecipientEmail","RecipientAddress","Status","RecipientZone","DeliveredPlan","ReturnedPlan","MerchantOrderID","AmountToBeCollected","TransitHUB"
+"Mohd. Ashikuzzaman","Tanishq Afsara","Q2KYI7BE","ashique","01404430403","","Jatrabari","DELIVERED","Inside Dhaka","DC 50","RC 50","100127","500","Central Hub"
+"Mohd. Ashikuzzaman","Tanishq Afsara","Q2KYI7BE","Rana","01404430402","","Badda","PARTIAL DELIVERED","Inside Dhaka","DC 50","RC 50","1000126","1500","Central Hub"
+"Mohd. Ashikuzzaman","Tanishq Afsara","Q2KYI7BE","Shushanto","01404430410","","Dhanmondi","DELIVERED","Inside Dhaka","DC 50","RC 50","1000126","1300","Central Hub"
+"Mohd. Ashikuzzaman","Tanishq Afsara","Q2KYI7BE","Limon","01404430405","","Jatrabari","DELIVERED","Inside Dhaka","DC 50","RC 50","1000125","1200","Central Hub"
+"Mohd. Ashikuzzaman","Tanishq Afsara","Q2KYI7BE","Ashique","01404430403","","Mirpur","RETURNED","Inside Dhaka","DC 50","RC 50","100025","1500","Central Hub"
+"Mohd. Ashikuzzaman","Tanishq Afsara","Q2KYI7BE","zaman","01404430403","","Uttara","EXCHANGED","Inside Dhaka","DC 50","RC 50","1000124","1000","Central Hub"
+"Farhana Mahmud","Purni's Collections","CETBBVEJ","Dr. Maksuda Begum","01712126455","","BSBA Hospital, Vatiary Station Road, Chittagong.","PENDING","Outside Dhaka","DC 110","RC 110","PC0403","","Badda Hub"

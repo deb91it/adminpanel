@@ -1,0 +1,3 @@
+//eqfeed_callback({"type":"FeatureCollection","features":[{"type":"car","geometry":{"coordinates":[23.772570,90.413243]}},{"type":"bike","geometry":{"coordinates":[23.767541,90.415518]}},{"type":"ambulance","geometry":{"coordinates":[23.766480,90.409038]}}, {"type":"ambulance","geometry":{"coordinates":[23.780664,90.425145]}},{"type":"car","geometry":{"coordinates":[23.780320,90.411005]}},{"type":"car","geometry":{"coordinates":[23.757772,90.447232]}},{"type":"bike","geometry":{"coordinates":[23.771352,90.380376]}},{"type":"ambulance","geometry":{"coordinates":[23.795898,90.367805]}} ] })
+
+//eqfeed_callback(<?php echo $coordinates; ?>);

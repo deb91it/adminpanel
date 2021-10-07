@@ -1,0 +1,147 @@
+.error_txt_size{
+    font-size: 11px !important;
+}
+.error_message{
+    font-size: 13px !important;
+	color:red;
+}
+
+#VideoUploadForm {
+	margin: 20px auto;
+	background: #eee;
+	border-radius: 10px;
+	padding: 15px;
+	height:85px;
+}
+
+.videoUploadView {
+}
+
+#progress {
+	position:relative;
+	border: 1px solid #ddd;
+	padding: 1px;
+	border-radius: 3px;
+	display: none; 
+}
+
+#bar { 
+	background-color: #B4F5B4; 
+	width:0%;
+	height:20px;
+	border-radius: 3px;
+ }
+
+.cancel_upload { 
+	position:relative;
+	color:#000;
+	padding:5px;
+	margin:5px;	
+	cursor:hand;
+	cursor:pointer;
+	text-align:right;
+	display: none; 
+ }
+.cancel_upload span { 
+	color:#ff0000;
+	font-size:14px;
+ }
+ 
+#percent { position:absolute; display:inline-block; top:3px; left:48%; }
+
+/* Icon spinner */
+
+.glyphicon.normal-right-spinner {
+	-webkit-animation: glyphicon-spin-r 2s infinite linear;
+	animation: glyphicon-spin-r 2s infinite linear;
+}
+
+@-webkit-keyframes glyphicon-spin-r {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+
+@keyframes glyphicon-spin-r {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+
+@-webkit-keyframes glyphicon-spin-l {
+	0% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes glyphicon-spin-l {
+	0% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+}
+
+fieldset.pick-offpick-hour {
+	border: 1px groove #ddd !important;
+	padding: 0 1.4em 1.4em 1.4em !important;
+	margin: 0 0 1.5em 0 !important;
+	-webkit-box-shadow:  0px 0px 0px 0px #000;
+	box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.pick-offpick-hour {
+	font-size: 1.1em !important;
+	font-weight: bold !important;
+	text-align: left !important;
+	width:auto;
+	padding:0 10px;
+	border-bottom:none;
+}
+
+legend.pick-offpick-hour span {
+	font-size: 1.0em !important;
+	font-weight: normal !important;
+}
+
+.emap .container{
+  width: 100%;
+  margin: 0 auto;
+  margin-top:10px;
+}
+
+.emap #map_container{
+  position: relative;
+}
+.emap #map{
+    height: 1200px;
+    overflow: hidden;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+}
+.emap .navbar-inverse {
+  background-color: rgba(0,0,0,.7);
+}

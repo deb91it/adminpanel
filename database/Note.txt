@@ -1,0 +1,478 @@
+DROP TABLE IF EXISTS `stores`;
+CREATE TABLE `stores` (
+      `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+      `merchant_id` INT NOT NULL,
+      `name` VARCHAR(150) NULL,
+      `zone_id` INT NULL,
+      `contact_name` VARCHAR(150) NULL,
+      `contact_phone` VARCHAR(15) NULL,
+      `address` TEXT NULL,
+      `is_mart_ready` TINYINT(2) NOT NULL DEFAULT '0',
+      `status` TINYINT(2) NOT NULL DEFAULT '1',
+      `created_at` timestamp NULL,
+      `updated_at` timestamp NULL,
+      PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE `categories` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(100) NULL,
+    `status` INT(2) NULL DEFAULT 1,
+    `created_at` timestamp NULL,
+    `updated_at` timestamp NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `store_category`;
+CREATE TABLE `store_category` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `store_id` INT NOT NULL,
+    `categories_id` INT NOT NULL,
+    `created_at` timestamp NULL,
+    `updated_at` timestamp NULL,
+PRIMARY KEY (`id`));
+
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `merchant_id` INT NOT NULL,
+    `name` VARCHAR(150) NOT NULL,
+    `subtitle` VARCHAR(150) NOT NULL,
+    `sku` VARCHAR(100) NULL,
+    `store_id` INT NOT NULL,
+    `category_id` INT NOT NULL,
+    `description` TEXT NULL,
+    `price` FLOAT NOT NULL DEFAULT 0,
+    `sell_price` FLOAT NOT NULL DEFAULT 0,
+    `weight` FLOAT NOT NULL DEFAULT 0,
+    `width` FLOAT NOT NULL DEFAULT 0,
+    `height` FLOAT NOT NULL DEFAULT 0,
+    `depth` FLOAT NOT NULL DEFAULT 0,
+    `status` TINYINT(2) NOT NULL DEFAULT '1',
+    `created_at` timestamp NULL,
+    `updated_at` timestamp NULL,
+    `deleted_at` timestamp NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `deliveries`;
+CREATE TABLE `deliveries` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `consignment_id` VARCHAR(20) NOT NULL,
+    `merchant_id` INT NOT NULL,
+    `hub_id` INT NOT NULL,
+    `recipient_name` VARCHAR(100) NOT NULL,
+    `recipient_number` VARCHAR(15) NOT NULL,
+    `recipient_email` VARCHAR(45) NULL,
+    `recipient_zone_id` INT NOT NULL,
+    `recipient_address` TEXT NULL,
+    `store_id` INT NULL,
+    `package_description` TEXT NULL,
+    `amount_to_be_collected` FLOAT NULL,
+    `receive_amount` FLOAT NULL DEFAULT 0,
+    `charge` FLOAT NULL,
+    `plan_id` INT NOT NULL,
+    `delivery_note` TEXT NULL,
+    `special_instruction` TEXT NULL,
+    `merchant_order_id` VARCHAR(25) NULL,
+    `payment_status` TINYINT(2) NOT NULL DEFAULT '0',
+    `status` TINYINT(2) NOT NULL DEFAULT '1',
+    `delivery_date` date NULL,
+    `return_date` date NULL,
+    `invoice_date` date NULL,
+    `created_at` timestamp NULL,
+    `updated_at` timestamp NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `delivery_product`;
+CREATE TABLE `delivery_product` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `delivery_id` INT NOT NULL,
+    `product_id` INT NOT NULL,
+    `is_approve` INT(1) NOT NULL DEFAULT 0,
+    `created_at` timestamp NULL,
+    `updated_at` timestamp NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+DROP TABLE IF EXISTS `courier_zones`;
+CREATE TABLE `courier_zones` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `zone_name` VARCHAR(150) NOT NULL,
+    `status` TINYINT(2) NOT NULL DEFAULT '1',
+    `created_at` timestamp NULL,
+    `updated_at` timestamp NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `plans`;
+CREATE TABLE `plans` (
+    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `plan_name` VARCHAR(150) NOT NULL,
+    `charge` FLOAT NOT NULL,
+    `status` TINYINT(2) NOT NULL DEFAULT '1',
+    `created_at` timestamp NULL,
+    `updated_at` timestamp NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE plan_assign_to_merchant (
+      `id` INT NOT NULL AUTO_INCREMENT,
+      `plan_id` INT NOT NULL,
+      `merchant_id` INT NOT NULL,
+      `status` TINYINT(1) NOT NULL,
+      `created_at` DATETIME NOT NULL,
+      `updated_at` DATETIME NULL,
+      PRIMARY KEY (`id`)
+      )ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `merchants`;
+
+CREATE TABLE `merchants` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `hub_id` INT NOT NULL DEFAULT 1,
+  `first_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `profile_pic` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `profile_pic_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `pic_mime_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `id_type` varchar(20) NOT NULL,
+  `id_number` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `front_image` VARCHAR(45) NOT NULL,
+  `front_image_url` VARCHAR(255) NOT NULL,
+  `operator_name` VARCHAR(45) NULL,
+  `operator_number` VARCHAR(45) NULL,
+  `operator_email` VARCHAR(45),
+  `business_name` VARCHAR(45),
+  `media_link` VARCHAR(45),
+  `address` TEXT NOT NULL,
+  `member_id` int(11) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) unsigned NOT NULL DEFAULT '0',
+  `edited_by` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted_by` int(11) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `merchants_member_id_foreign` (`member_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `models` (`display_name`, `model_key`, `model_class_name`, `status`, `created_at`, `updated_at`)
+    VALUES ('Merchant', 'merchant', 'EloquentMerchantRepository', '1', '2019-04-21 18:21:37', '2019-04-21 18:21:37');
+
+DROP TABLE IF EXISTS `payment_details`;
+CREATE TABLE `payment_details` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `merchant_id` INT NOT NULL,
+    `payment_type` TINYINT(4) NOT NULL,
+    `wallet_provider` INT NOT NULL,
+    `account_holder_name` VARCHAR(45) NOT NULL,
+    `account_number` VARCHAR(45) NOT NULL,
+    `bank_account_type` VARCHAR(45) NOT NULL,
+    `bank_brunch_name` VARCHAR(45) NOT NULL,
+    `bank_routing_number` VARCHAR(45) NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `payment_info`;
+CREATE TABLE `payment_info` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `payment_name` VARCHAR(100) NOT NULL,
+    `is_bank` TINYINT(1) NOT NULL DEFAULT 1,
+    `status` TINYINT(1) NOT NULL DEFAULT 1,
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NULL,
+    PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `admin_users`
+ADD COLUMN `hub_id` INT NOT NULL AFTER `pic_mime_type`;
+
+DROP TABLE IF EXISTS `flag_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `flag_status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `flag_text` varchar(50) NOT NULL,
+  `color_code` varchar(50) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `flag_status` VALUES
+(1,'PENDING','#FC5A03','2019-04-30 00:00:00',NULL),
+(2,'ACCEPTED','#117803','2019-04-30 00:00:00',NULL),
+(3,'AT SORTING','#8605F9','2019-04-30 00:00:00',NULL),
+(4,'LEFT SORTING','#03C3B2','2019-04-30 00:00:00',NULL),
+(5,'IN TRANSIT','#010FA0','2019-04-30 00:00:00',NULL),
+(6,'DELIVERED','#025112','2019-04-30 00:00:00',NULL),
+(7,'RETURNED FROM HUB','#F30505','2019-04-30 00:00:00',NULL),
+(8,'RETURNED','#F30505','2019-04-30 00:00:00',NULL),
+(9,'ON HOLD','#9DA005','2019-04-30 00:00:00',NULL),
+(10,'ASSIGN TO','#3AC502','2019-04-30 00:00:00',NULL),
+(11,'COLLECTED','#6B0936','2019-04-30 00:00:00',NULL);
+
+DROP TABLE IF EXISTS `tracking_details`;
+CREATE TABLE `tracking_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deliveries_id` int(11) NOT NULL,
+  `flag_status_id` int(2) NOT NULL,
+  `assign_to` int(11) NOT NULL DEFAULT 0,
+  `is_hub` int(2) NOT NULL DEFAULT 0,
+  `in_out` INT(11) NOT NULL DEFAULT 0,
+  `notes` VARCHAR(250) NULL,
+  `description` VARCHAR(250) NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `tracking_details_summary`;
+CREATE TABLE `tracking_details_summary`(
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `deliveries_id` INT NOT NULL,
+  `hub_id` INT NOT NULL,
+  `in_out` INT NOT NULL,
+  `details` TEXT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `hub`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hub` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hub_name` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `hub_image` varchar(45) DEFAULT NULL,
+  `hub_image_url` varchar(255) DEFAULT NULL,
+  `status` INT(2) DEFAULT '1' NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `riders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `riders` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `designation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gender` tinyint(4) NOT NULL,
+  `date_of_birth` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `profile_pic` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `profile_pic_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `pic_mime_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `member_id` int(11) unsigned NOT NULL,
+  `hub_id` int(11) NOT NULL,
+  `nid` int(15) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_by` int(11) unsigned NOT NULL DEFAULT '0',
+  `edited_by` int(11) unsigned NOT NULL DEFAULT '0',
+  `deleted_by` int(11) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `agents_member_id_foreign` (`member_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `invoices`;
+CREATE TABLE `invoices` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `invoice_date` DATETIME NOT NULL,
+  `merchant_id` INT NOT NULL,
+  `notes` VARCHAR(255) NULL,
+  `amount` FLOAT NOT NULL DEFAULT 0,
+  `paid_status` INT(2) NOT NULL DEFAULT 0,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `mail_settings`;
+CREATE TABLE `mail_settings` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `mail_driver` VARCHAR(45) NOT NULL,
+  `mail_host` VARCHAR(100) NOT NULL,
+  `mail_port` VARCHAR(10) NOT NULL,
+  `mail_username` VARCHAR(100) NOT NULL,
+  `mail_password` VARCHAR(100) NOT NULL,
+  `mail_encryption` VARCHAR(100) NOT NULL DEFAULT 'null',
+  `status` INT(2) NOT NULL DEFAULT 1,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`)
+  )ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+DROP TABLE IF EXISTS `job_process`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `job_process` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`process` varchar(45) NOT NULL,
+`created_at` datetime NOT NULL,
+`updated_at` datetime DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `deliveries` ADD COLUMN `cod_charge` FLOAT (10,2) NOT NULL DEFAULT 0 AFTER `charge`;
+ALTER TABLE `merchants` ADD COLUMN `cod_percentage` FLOAT (10,2) NOT NULL DEFAULT 1 AFTER `hub_id`;
+
+ALTER TABLE `deliveries` ADD COLUMN `receive_amount` FLOAT NOT NULL AFTER `amount_to_be_collected`;
+ALTER TABLE `riders`
+ADD COLUMN `zone_id` INT(10) NOT NULL DEFAULT 0 AFTER `nid`;
+
+ALTER TABLE `stores`
+DROP COLUMN `coordinates`;
+
+ALTER TABLE `deliveries`
+DROP COLUMN `recipient_coordinates`;
+
+ALTER TABLE `stores`
+ADD COLUMN `latitude` DECIMAL(10, 8) NOT NULL AFTER `address`;
+
+ALTER TABLE `stores`
+ADD COLUMN `longitude` DECIMAL(10, 8) NOT NULL AFTER `latitude`;
+
+ALTER TABLE `deliveries`
+ADD COLUMN `latitude` DECIMAL(10, 8) NOT NULL AFTER `recipient_address`;
+
+ALTER TABLE `deliveries`
+ADD COLUMN `longitude` DECIMAL(10, 8) NOT NULL AFTER `latitude`;
+
+ALTER TABLE `tracking_details`
+ADD COLUMN `is_active` INT(2) NOT NULL DEFAULT 0 AFTER `in_out`;
+
+CREATE TABLE `invoice_details` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `invoice_id` INT NOT NULL,
+  `delivery_id` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `expense_category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `status` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `expense` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `exp_category_id` INT NOT NULL,
+  `expense_date` DATE NOT NULL,
+  `payment_type` VARCHAR(45) NOT NULL,
+  `amount` DOUBLE NOT NULL,
+  `image_name` VARCHAR(100) NULL,
+  `image_url` VARCHAR(100) NULL,
+  `mime_type` VARCHAR(45) NULL,
+  `description` TEXT NULL,
+  `status` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `invoices`
+ADD COLUMN `invoice_no` VARCHAR(45) NOT NULL DEFAULT 0 AFTER `id`;
+
+ALTER TABLE `invoices`
+ADD COLUMN `email_send_status` INT(1) NOT NULL DEFAULT 0 AFTER `paid_status`;
+
+CREATE TABLE `email_logs` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `merchant_id` INT(11) NOT NULL,
+  `invoice_id` INT(11) NOT NULL,
+  `reason` VARCHAR(100) NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `plans`
+ADD COLUMN `plan_code` VARCHAR(45) NOT NULL DEFAULT 0 AFTER `id`;
+
+ALTER TABLE `courier_zones`
+ADD COLUMN `zone_code` VARCHAR(45) NOT NULL DEFAULT 0 AFTER `zone_name`;
+
+ALTER TABLE `merchants`
+ADD COLUMN `merchant_code` VARCHAR(45) NOT NULL DEFAULT 0 AFTER `id`;
+
+ALTER TABLE `expense`
+ADD COLUMN `payment_date` DATE NULL AFTER `payment_type`;
+
+CREATE TABLE `import_csv_logs` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `file_name` VARCHAR(50) NOT NULL,
+  `mime_type` VARCHAR(45) NOT NULL,
+  `file_execute` INT(1) NOT NULL,
+  `uploaded_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `deliveries`
+ADD COLUMN `created_by` INT NULL AFTER `updated_at`,
+ADD COLUMN `updated_by` INT NULL AFTER `created_by`;
+
+ALTER TABLE `deliveries`
+ADD COLUMN `receipent_alternative_number` VARCHAR(45) NULL AFTER `recipient_number`;
+
+
+//development phase 2
+ALTER TABLE `hub`
+ADD COLUMN `hub_code` VARCHAR(45) NULL AFTER `id`;
+
+ALTER TABLE `tracking_details`
+ADD COLUMN `entry_by` INT NULL AFTER `description`;
+
+ALTER TABLE `plans`
+ADD COLUMN `plan_type` VARCHAR(45) NULL AFTER `plan_name`;
+
+ALTER TABLE `deliveries`
+ADD COLUMN `plan_returned_id` INT NULL AFTER `plan_id`;
+
+ALTER TABLE `invoices`
+ADD COLUMN `additional_amount` FLOAT NULL DEFAULT 0 AFTER `amount`;
+
+ALTER TABLE `merchants`
+ADD COLUMN `cod_limit_amount` FLOAT NULL AFTER `cod_percentage`;
+
+// NEW STATUSES
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('PARTIAL DELIVERED', '#A7F166', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('CASH COLLECTED', '#66F192', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('CASH HANDOVER', '#66F192', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('HANDOVER ACCEPTED', '#66A3F1', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('PARTIAL RETURNED', '#F81A4C', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('RETURN COLLECTED', '#CD0532', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('RETURN HANDOVER', '#B93E59', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('RETURN HANDOVER ACCEPTED', '#471520', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`flag_text`, `color_code`, `created_at`) VALUES ('RESCHEDULED', '#FBE507', '2019-04-30 00:00:00');
+INSERT INTO `flag_status` (`id`, `flag_text`, `color_code`, `created_at`) VALUES ('21', 'PICKED BY', '#555ECF', '2019-04-30 00:00:00');
+
+
+
+
+
+
+
+
+
+
+
+
+
